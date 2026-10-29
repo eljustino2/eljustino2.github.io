@@ -202,6 +202,19 @@
   .entry li::marker { color: var(--accent); }
   /* Certifications */
   .cert-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.9rem; font-weight: 600; word-break: break-all; }
+  /* Projects */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; }
+  .project-card {
+    background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 1.15rem 1.25rem; display: flex; flex-direction: column; gap: 0.55rem;
+  }
+  .project-card h3 { font-size: 1.05rem; color: var(--navy); }
+  .project-card p { margin: 0; font-size: 0.95rem; color: var(--ink-soft); }
+  .project-card .tag-list li { font-size: 0.8rem; padding: 0.22rem 0.6rem; }
+  .project-link {
+    margin-top: auto; padding-top: 0.35rem; font-weight: 600; font-size: 0.92rem;
+    display: inline-flex; align-items: center; gap: 0.4rem; word-break: break-all;
+  }
   /* Footer / contact */
   .site-footer { background: var(--navy-deep); color: #d9d9d9; padding: 2.5rem 0 2rem; }
   .site-footer h2 { color: #fff; font-size: 1.3rem; margin-bottom: 0.8rem; }
@@ -242,6 +255,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#certifications">Certifications</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -402,6 +416,52 @@
     </div>
   </section>
 
+  <!-- ================= PROJECTS ================= -->
+  <section id="projects" aria-labelledby="projects-title">
+    <div class="wrap">
+      <h2 class="section-title" id="projects-title">Projects</h2>
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <h3>Machine &amp; Deep Learning Models</h3>
+          <p>Jupyter notebooks implementing ML and DL models, including Apriori association-rule mining on retail transaction data and an LSTM network for sequence prediction.</p>
+          <ul class="tag-list" aria-label="Technologies used"><li>Python</li><li>Jupyter</li><li>LSTM</li><li>Apriori</li></ul>
+          <a class="project-link" href="https://github.com/eljustino2/ML-DL-MODELS" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            github.com/eljustino2/ML-DL-MODELS</a>
+        </article>
+
+        <article class="project-card">
+          <h3>SQL Analysis: World Layoffs</h3>
+          <p>End-to-end SQL project on global layoffs data: builds the database from scratch, cleans the raw records, then runs exploratory analysis queries to surface trends.</p>
+          <ul class="tag-list" aria-label="Technologies used"><li>MySQL</li><li>Data Cleaning</li><li>Exploratory Analysis</li></ul>
+          <a class="project-link" href="https://github.com/eljustino2/MYSQL-TEST-PROJECTS" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            github.com/eljustino2/MYSQL-TEST-PROJECTS</a>
+        </article>
+
+        <article class="project-card">
+          <h3>Classification &amp; Regression Models</h3>
+          <p>Notebooks covering logistic regression and core machine-learning algorithms, applied to the Titanic survival and SUV purchase datasets.</p>
+          <ul class="tag-list" aria-label="Technologies used"><li>Python</li><li>Logistic Regression</li><li>Classification</li></ul>
+          <a class="project-link" href="https://github.com/eljustino2/Regression" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            github.com/eljustino2/Regression</a>
+        </article>
+
+        <article class="project-card">
+          <h3>US Household Income EDA</h3>
+          <p>Exploratory data analysis of United States household income (2015) &mdash; from data cleaning through visualization-driven insights.</p>
+          <ul class="tag-list" aria-label="Technologies used"><li>Python</li><li>EDA</li><li>Data Visualization</li></ul>
+          <a class="project-link" href="https://github.com/eljustino2/HOUSEHOULD_INCOME_USA" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            github.com/eljustino2/HOUSEHOULD_INCOME_USA</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ================= EDUCATION ================= -->
   <section id="education" aria-labelledby="education-title">
     <div class="wrap">
@@ -506,7 +566,7 @@
       var visible = {};
       var obs = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting; });
-        var order = ["about", "skills", "experience", "education", "certifications", "contact"];
+        var order = ["about", "skills", "experience", "projects", "education", "certifications", "contact"];
         var activeId = null;
         for (var i = 0; i < order.length; i++) { if (visible[order[i]]) { activeId = order[i]; break; } }
         links.forEach(function (a) {
@@ -514,7 +574,7 @@
           if (on) { a.setAttribute("aria-current", "true"); } else { a.removeAttribute("aria-current"); }
         });
       }, { rootMargin: "-30% 0px -60% 0px" });
-      ["about", "skills", "experience", "education", "certifications", "contact"].forEach(function (id) {
+      ["about", "skills", "experience", "projects", "education", "certifications", "contact"].forEach(function (id) {
         var el = document.getElementById(id);
         if (el) obs.observe(el);
       });
